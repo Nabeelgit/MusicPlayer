@@ -18,13 +18,23 @@
             <button type="submit">Search</button>
         </form>
         <div class="latest">
-            <h2>Latest uploads</h2>
+            <h2 style="text-align: center">Latest uploads</h2>
             <?php
             require './vendor/autoload.php';
             $conn = new MongoDB\Client('mongodb://localhost:27017');
             $table = $conn->musicplayer->music;
             $match = $table->find([], ['sort' => ['_id' => -1]]);
-            
+            foreach($match as $music){
+                ?>
+                <div class="music">
+                    <span><?php echo $music['name']?> - <?php echo $music['author']?></span>
+                    <audio controls>
+                        <source src="./music/<?php echo $music['audio']?>">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <?php
+            }
             ?>
         </div>
     </div>

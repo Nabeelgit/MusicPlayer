@@ -13,3 +13,9 @@ body {
 .mb-2 {
     margin-bottom: 2rem;
 }
+.music {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
